@@ -23,7 +23,8 @@ app.post('/usuarios', async (request, response) => {
         }
     })
 
-    response.status(201).json({message: "Usuário criado com sucesso"})
+    
+    response.status(201).json(users)
 })
 
 app.listen(3000)
