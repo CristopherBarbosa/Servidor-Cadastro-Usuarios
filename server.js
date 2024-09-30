@@ -9,6 +9,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/usuarios/:id', async (request, response) =>{
+
     const users = await prisma.user.findMany()
 
     response.status(200).json(users)
@@ -25,6 +26,25 @@ app.post('/usuarios', async (request, response) => {
 
     
     response.status(201).json(users)
+})
+
+
+app.put('/usuarios/:id', async (request, response) => {
+
+    
+    const users = await prisma.user.update({
+       where: {
+            id: request.params.id
+       }, 
+        data:{
+            email: request.body.email,
+            age: request.body.age,
+            name: request.body.name
+        }
+   })
+
+   
+   response.status(200).json(users)
 })
 
 app.listen(3000)
