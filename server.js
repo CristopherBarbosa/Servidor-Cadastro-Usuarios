@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.use(cors())
 
-app.get('/usuarios/:id', async (request, response) =>{
+app.get('/usuarios', async (request, response) =>{
 
     const users = await prisma.user.findMany()
 
